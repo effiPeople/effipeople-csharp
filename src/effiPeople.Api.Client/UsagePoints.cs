@@ -40,11 +40,11 @@ namespace effiPeople.Api.Client
         /// </summary>
         /// <param name="usagePoint">Punto de suministro</param>
         /// <returns></returns>
-        public Task<HttpResponseMessage> AddUsagePointAsync(UsagePoint usagePoint)
+        public Task<UsagePoint> AddUsagePointAsync(UsagePoint usagePoint)
         {
             string url = GetUrl("/usagepoints");
 
-            return PostAsync(url, usagePoint);
+            return PostAsync < UsagePoint, UsagePoint>(url, usagePoint);
         }
 
         /// <summary>
@@ -53,11 +53,11 @@ namespace effiPeople.Api.Client
         /// <param name="usagePointId">Identificador del punto de suministro</param>
         /// <param name="usagePoint">Punto de suministro</param>
         /// <returns></returns>
-        public Task<HttpResponseMessage> UpdateUsagePointAsync(string usagePointId, UsagePoint usagePoint)
+        public Task<UsagePoint> UpdateUsagePointAsync(string usagePointId, UsagePoint usagePoint)
         {
             string url = GetUrl("/usagepoints/{0}", usagePointId);
 
-            return PutAsync(url, usagePoint);
+            return PutAsync<UsagePoint, UsagePoint>(url, usagePoint);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace effiPeople.Api.Client
         /// </summary>
         /// <param name="usagePoints"></param>
         /// <returns></returns>
-        public Task AddUsagePointsAsync(List<UsagePoint> usagePoints)
+        public Task<HttpResponseMessage> AddUsagePointsAsync(List<UsagePoint> usagePoints)
         {
             string url = GetUrl("/usagepoints");
 

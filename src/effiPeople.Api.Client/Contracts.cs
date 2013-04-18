@@ -13,11 +13,11 @@ namespace effiPeople.Api.Client
         /// <param name="customerId">Identificador del cliente</param>
         /// <param name="contract">Contrato</param>
         /// <returns></returns>
-        public Task<HttpResponseMessage> AddCustomerContractAsync(string customerId, Contract contract)
+        public Task<Contract> AddCustomerContractAsync(string customerId, Contract contract)
         {
             string url = GetUrl("/customers/{0}/contracts", customerId);
 
-            return PostAsync(url, contract);
+            return PostAsync<Contract, Contract>(url, contract);
         }
 
         /// <summary>
@@ -65,11 +65,24 @@ namespace effiPeople.Api.Client
         /// <param name="contractId"></param>
         /// <param name="contract"></param>
         /// <returns></returns>
-        public Task UpdateCustomerContractAsync(string customerId, string contractId, Contract contract)
+        public Task<Contract> UpdateCustomerContractAsync(string customerId, string contractId, Contract contract)
         {
             string url = GetUrl("/customers/{0}/contracts/{1}", customerId, contractId);
 
-            return PutAsync(url, contract);
+            return PutAsync<Contract, Contract>(url, contract);
+        }
+
+        /// <summary>
+        /// Elimina el contrato de un cliente
+        /// </summary>
+        /// <param name="customerId">Identificador del cliente</param>
+        /// <param name="contractId">Identificador del contrato</param>
+        /// <returns></returns>
+        public Task<HttpResponseMessage> DeleteContractAsync(string customerId, string contractId)
+        {
+            string url = GetUrl("/customers/{0}/contracts/{1}", customerId, contractId);
+
+            return DeleteAsync(url);
         }
     }
 }

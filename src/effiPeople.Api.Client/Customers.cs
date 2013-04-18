@@ -37,11 +37,11 @@ namespace effiPeople.Api.Client
         /// </summary>
         /// <param name="customer"></param>
         /// <returns></returns>
-        public Task<HttpResponseMessage> AddCustomerAsync(Customer customer)
+        public Task<Customer> AddCustomerAsync(Customer customer)
         {
             string url = GetUrl("/customers");
 
-            return PostAsync(url, customer);
+            return PostAsync<Customer, Customer>(url, customer);
         }
 
         /// <summary>
@@ -62,11 +62,11 @@ namespace effiPeople.Api.Client
         /// <param name="customerId"></param>
         /// <param name="customer"></param>
         /// <returns></returns>
-        public Task<HttpResponseMessage> UpdateCustomerAsync(string customerId, Customer customer)
+        public Task<Customer> UpdateCustomerAsync(string customerId, Customer customer)
         {
             string url = GetUrl("/customers/{0}", customerId);
 
-            return PutAsync(url, customer);
+            return PutAsync<Customer,Customer>(url, customer);
         }
 
         /// <summary>
