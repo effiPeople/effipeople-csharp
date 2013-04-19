@@ -11,6 +11,18 @@ namespace effiPeople.Api.Client
     public partial class EffiPeopleRestClient
     {
         /// <summary>
+        /// Añade una medida
+        /// </summary>
+        /// <param name="measure"></param>
+        /// <returns></returns>
+        public Task<Measure> AddMeasureAsync(Measure measure)
+        {
+            string url = GetUrl("/measures");
+
+            return PostAsync<Measure, Measure>(url, measure);
+        }
+
+        /// <summary>
         /// Añade o actualiza una medida
         /// </summary>
         /// <param name="measure"></param>
@@ -48,6 +60,7 @@ namespace effiPeople.Api.Client
             return GetMeasuresAsync(usagePointId, null, dateTime, null, measureType, limit, offset);
         }
 
+     
         /// <summary>
         /// Obtiene las medidas
         /// </summary>
@@ -61,12 +74,19 @@ namespace effiPeople.Api.Client
         /// <returns></returns>
         public Task<List<Measure>> GetMeasuresAsync(string usagePointId = null, string meterId = null, DateTime? dateTime = null, byte? period = null, MeasureType? measureType = null, int? limit = null, int? offset = null)
         {
+            var url = GetMeasureQueryUrl(usagePointId, meterId, dateTime, period, measureType, limit, offset);
+
+            return GetAsync<List<Measure>>(url);
+        }
+
+        private string GetMeasureQueryUrl(string usagePointId, string meterId, DateTime? dateTime, byte? period, MeasureType? measureType, int? limit, int? offset)
+        {
             string url = GetUrl("/measures");
 
             long? date = null;
 
             if (dateTime != null)
-                date = dateTime.AsEpochTimeInSeconds();
+                date = dateTime.ToEpochTimeInSeconds();
 
             var query = new List<string>();
 
@@ -93,8 +113,7 @@ namespace effiPeople.Api.Client
 
             if (query.Count > 0)
                 url += "?" + string.Join("&", query);
-
-            return GetAsync<List<Measure>>(url);
+            return url;
         }
 
         /// <summary>
@@ -113,7 +132,7 @@ namespace effiPeople.Api.Client
             long? date = null;
 
             if (dateTime != null)
-                date = dateTime.AsEpochTimeInSeconds();
+                date = dateTime.ToEpochTimeInSeconds();
 
             var query = new List<string>();
 
@@ -137,5 +156,7 @@ namespace effiPeople.Api.Client
 
             return DeleteAsync(url);
         }
+
+       
     }
 }

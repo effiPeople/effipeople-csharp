@@ -14,7 +14,7 @@ namespace effiPeople.Api.Client.Model.Extensions
         /// </summary>
         /// <param name="dateTime">Fecha</param>
         /// <returns></returns>
-        public static long AsEpochTimeInSeconds(this DateTime dateTime)
+        public static long ToEpochTimeInSeconds(this DateTime dateTime)
         {
             var diff = dateTime - Epoch;
 
@@ -26,9 +26,9 @@ namespace effiPeople.Api.Client.Model.Extensions
         /// </summary>
         /// <param name="dateTime">Fecha</param>
         /// <returns></returns>
-        public static long? AsEpochTimeInSeconds(this DateTime? dateTime)
+        public static long? ToEpochTimeInSeconds(this DateTime? dateTime)
         {
-            return dateTime == null ? (long?)null : dateTime.Value.AsEpochTimeInSeconds();
+            return dateTime == null ? (long?)null : dateTime.Value.ToEpochTimeInSeconds();
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace effiPeople.Api.Client.Model.Extensions
         /// </summary>
         /// <param name="epochTimeInSeconds">Fecha</param>
         /// <returns></returns>
-        public static DateTime AsDateTimeFromEpochInSeconds(this long epochTimeInSeconds)
+        public static DateTime ToDateTimeFromEpochInSeconds(this long epochTimeInSeconds)
         {
             if (epochTimeInSeconds == 0)
                 return new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);

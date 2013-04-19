@@ -39,7 +39,6 @@ namespace effiPeople.Api.Client.Model
             DateTime = startDate;
             Duration = (long?)(endDate - startDate).TotalSeconds;
             Period = period;
-            Period = period;
             Consumption = consumption;
         }
 
@@ -103,8 +102,8 @@ namespace effiPeople.Api.Client.Model
         /// </summary>
         public DateTime DateTime
         {
-            get { return Date.AsDateTimeFromEpochInSeconds(); }
-            set { Date = value.AsEpochTimeInSeconds(); }
+            get { return Date.ToDateTimeFromEpochInSeconds(); }
+            set { Date = value.ToEpochTimeInSeconds(); }
         }
 
         /// <summary>

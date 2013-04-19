@@ -59,9 +59,9 @@ namespace effiPeople.Api.Client.Model
         public string UsagePointId { get; set; }
 
         /// <summary>
-        /// Tipo de cliente.
+        /// Tipo de cliente. Opcional
         /// </summary>
-        public CustomerType CustomerType { get; set; }
+        public CustomerType? CustomerType { get; set; }
 
     }
 }

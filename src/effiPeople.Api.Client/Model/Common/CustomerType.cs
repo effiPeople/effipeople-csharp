@@ -5,8 +5,8 @@ namespace effiPeople.Api.Client.Model.Common
     /// </summary>
     public enum CustomerType
     {
-        // No establecido
-        NotSet = 0,
+        // Desconocido
+        Unknown = 0,
 
         /// <summary>
         ///     Residencial
