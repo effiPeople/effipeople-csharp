@@ -10,6 +10,31 @@ namespace effiPeople.Api.Client
 {
     public partial class EffiPeopleRestClient
     {
+
+        /// <summary>
+        /// Obtiene una medida.
+        /// </summary>
+        /// <param name="measureId">Identificador único de la medida</param>
+        /// <returns></returns>
+        public Task<Measure> GetMeasureAsync(string measureId)
+        {
+            string url = GetUrl("/measures/{0}", measureId);
+
+            return GetAsync<Measure>(url);
+        }
+       
+        /// <summary>
+        /// Elimina una medida.
+        /// </summary>
+        /// <param name="measureId">Identificador único de la medida</param>
+        /// <returns></returns>
+        public Task<HttpResponseMessage> DeleteMeasureAsync(string measureId)
+        {
+            string url = GetUrl("/measures/{0}", measureId);
+
+            return DeleteAsync(url);
+        }
+
         /// <summary>
         /// Añade una medida
         /// </summary>
@@ -25,13 +50,13 @@ namespace effiPeople.Api.Client
         /// <summary>
         /// Añade o actualiza una medida
         /// </summary>
-        /// <param name="measure"></param>
+        /// <param name="measure">Medida</param>
         /// <returns></returns>
-        public Task<HttpResponseMessage> PushMeasureAsync(Measure measure)
+        public Task<Measure> UpdateMeasureAsync(Measure measure)
         {
-            var measures = new List<Measure> {measure};
+            string url = GetUrl("/measures/{0}", measure.Id);
 
-            return PushMeasuresAsync(measures);
+            return PutAsync<Measure, Measure>(url, measure);
         }
 
         /// <summary>
@@ -39,7 +64,7 @@ namespace effiPeople.Api.Client
         /// </summary>
         /// <param name="measures"></param>
         /// <returns></returns>
-        public Task<HttpResponseMessage> PushMeasuresAsync(List<Measure> measures)
+        public Task<HttpResponseMessage> PutMeasuresAsync(List<Measure> measures)
         {
             string url = GetUrl("/measures");
 
@@ -102,8 +127,8 @@ namespace effiPeople.Api.Client
             if (period != null && period > 0)
                 query.Add(string.Format("period={0}", period));
 
-            if (measureType != null && measureType > 0)
-                query.Add(string.Format("energyType={0}", measureType));
+            if (measureType != null)
+                query.Add(string.Format("measureType={0}", measureType));
 
             if (limit != null && limit > 0)
                 query.Add(string.Format("limit={0}", limit));
@@ -156,6 +181,7 @@ namespace effiPeople.Api.Client
 
             return DeleteAsync(url);
         }
+
 
        
     }

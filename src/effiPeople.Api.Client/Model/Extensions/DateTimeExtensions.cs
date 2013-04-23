@@ -44,6 +44,17 @@ namespace effiPeople.Api.Client.Model.Extensions
             return Epoch.AddSeconds(epochTimeInSeconds);
         }
 
-     
+        /// <summary>
+        /// Convierte los segundos desde el 1 de enero de 1970 a una fecha
+        /// </summary>
+        /// <param name="epochTimeInSeconds">Fecha</param>
+        /// <returns></returns>
+        public static DateTime? ToDateTimeFromEpochInSeconds(this long? epochTimeInSeconds)
+        {
+            if (epochTimeInSeconds == null)
+                return null;
+
+            return epochTimeInSeconds.Value.ToDateTimeFromEpochInSeconds();
+        }
     }
 }

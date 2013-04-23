@@ -14,5 +14,6 @@
         /// CUPS al que está asociado
         /// </summary>
         public string UsagePointId { get; set; }
+        
     }
 }

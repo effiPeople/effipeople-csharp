@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Meters.cs" />
     <Compile Include="Model\Common\AuthenticationType.cs" />
     <Compile Include="Contracts.cs" />
     <Compile Include="Model\Exceptions\BadRequestException.cs" />

@@ -1,5 +1,7 @@
 ﻿using System;
+using Newtonsoft.Json;
 using effiPeople.Api.Client.Model.Common;
+using effiPeople.Api.Client.Model.Extensions;
 
 namespace effiPeople.Api.Client.Model
 {
@@ -21,17 +23,31 @@ namespace effiPeople.Api.Client.Model
         /// Identificador del cliente
         /// </summary>
         public string CustomerId { get; set; }
+        
+        [JsonProperty]
+        protected long Start { get; set; }
 
         /// <summary>
         /// Fecha inicial del contrato
         /// </summary>
-        public DateTime StartDate { get; set; }
+        [JsonIgnore]
+        public DateTime StartDate
+        {
+            get { return Start.ToDateTimeFromEpochInSeconds(); }
+            set { Start = value.ToEpochTimeInSeconds(); }
+        }
 
+        [JsonProperty]
+        protected long? End { get; set; }
 
         /// <summary>
         /// Fecha final del contrato, si existe
         /// </summary>
-        public DateTime? EndDate { get; set; }
+        public DateTime? EndDate
+        {
+            get { return End.ToDateTimeFromEpochInSeconds(); }
+            set { End = value.ToEpochTimeInSeconds(); }
+        }
 
         /// <summary>
         /// Identificador de la tarifa

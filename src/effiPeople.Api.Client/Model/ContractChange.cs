@@ -1,4 +1,6 @@
 ﻿using System;
+using Newtonsoft.Json;
+using effiPeople.Api.Client.Model.Extensions;
 
 namespace effiPeople.Api.Client.Model
 {
@@ -12,15 +14,31 @@ namespace effiPeople.Api.Client.Model
         /// </summary>
         public string ContractId { get; set; }
 
+        [JsonProperty]
+        protected long Start { get; set; }
+
         /// <summary>
         ///     Fecha de inicio de esta versión del contrato
         /// </summary>
-        public DateTime StartDate { get; set; }
+        [JsonIgnore]
+        public DateTime StartDate
+        {
+            get { return Start.ToDateTimeFromEpochInSeconds(); }
+            set { Start = value.ToEpochTimeInSeconds(); }
+        }
+
+        [JsonProperty]
+        protected long? End { get; set; }
+
 
         /// <summary>
         ///     Fecha final (si existe) de esta versión del contrato
         /// </summary>
-        public DateTime? EndDate { get; set; }
+        public DateTime? EndDate
+        {
+            get { return End.ToDateTimeFromEpochInSeconds(); }
+            set { End = value.ToEpochTimeInSeconds(); }
+        }
 
         /// <summary>
         ///     Identificador de la tarifa que se le aplica

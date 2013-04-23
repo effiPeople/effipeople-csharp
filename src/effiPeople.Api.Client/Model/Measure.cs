@@ -1,4 +1,6 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using effiPeople.Api.Client.Model.Common;
 using effiPeople.Api.Client.Model.Extensions;
 
@@ -9,14 +11,15 @@ namespace effiPeople.Api.Client.Model
     /// </summary>
     public class Measure
     {
-        public Measure(string usagePointId, MeasureType measureType, DateTime dateTime, byte period, long reading)
-            : this(usagePointId, null, measureType, dateTime, period, reading)
+        public Measure(string id, string usagePointId, MeasureType measureType, DateTime dateTime, byte period, long reading)
+            : this(id, usagePointId, null, measureType, dateTime, period, reading)
         {
 
         }
 
-        public Measure(string usagePointId, string meterId, MeasureType measureType, DateTime dateTime, byte period, long reading)
+        public Measure(string id, string usagePointId, string meterId, MeasureType measureType, DateTime dateTime, byte period, long reading)
         {
+            Id = id;
             UsagePointId = usagePointId;
             MeterId = meterId;
             MeasureType = measureType;
@@ -25,14 +28,15 @@ namespace effiPeople.Api.Client.Model
             Reading = reading;
         }
 
-        public Measure(string usagePointId, MeasureType measureType, DateTime startDate, DateTime endDate, byte period, long consumption)
-            : this(usagePointId, null, measureType, startDate, endDate, period, consumption)
+        public Measure(string id, string usagePointId, MeasureType measureType, DateTime startDate, DateTime endDate, byte period, long consumption)
+            : this(id, usagePointId, null, measureType, startDate, endDate, period, consumption)
         {
 
         }
 
-        public Measure(string usagePointId, string meterId, MeasureType measureType, DateTime startDate, DateTime endDate, byte period, long consumption)
+        public Measure(string id, string usagePointId, string meterId, MeasureType measureType, DateTime startDate, DateTime endDate, byte period, long consumption)
         {
+            Id = id;
             UsagePointId = usagePointId;
             MeterId = meterId;
             MeasureType = measureType;
@@ -46,6 +50,11 @@ namespace effiPeople.Api.Client.Model
         {
             Period = 1;
         }
+
+        /// <summary>
+        /// Identificador único de la medida.
+        /// </summary>
+        public string Id { get; set; }
 
         /// <summary>
         ///     Identificador del punto de suministro. Opcional si se especifica un contador.
@@ -65,7 +74,8 @@ namespace effiPeople.Api.Client.Model
         /// <summary>
         ///     Fecha de la medida en segundos desde el 1 de enero de 1970.
         /// </summary>
-        public long Date { get; set; }
+        [JsonProperty]
+        protected long Date { get; set; }
 
         /// <summary>
         ///     Lectura del contador
@@ -95,11 +105,13 @@ namespace effiPeople.Api.Client.Model
         /// <summary>
         ///     Tipo de medida. Si no se especifica se considerará activa.
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public MeasureType MeasureType { get; set; }
 
         /// <summary>
         ///     Fecha de la lectura
         /// </summary>
+        [JsonIgnore]
         public DateTime DateTime
         {
             get { return Date.ToDateTimeFromEpochInSeconds(); }
