@@ -18,12 +18,6 @@ namespace effiPeople.Api.Client.Model.Common
         /// Energía reactiva
         /// </summary>
         [EnumMember(Value = "Reactive")]
-        Reactive = 'R',
-
-        /// <summary>
-        /// Potencia
-        /// </summary>
-        [EnumMember(Value = "Power")]
-        Power = 'P'
+        Reactive = 'R'
     }
 }

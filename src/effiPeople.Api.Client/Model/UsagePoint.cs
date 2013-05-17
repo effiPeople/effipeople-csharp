@@ -13,7 +13,6 @@ namespace effiPeople.Api.Client.Model
         public UsagePoint()
         {
             Address = new Address();
-            Meters = new List<Meter>();
         }
 
         /// <summary>
@@ -34,11 +33,7 @@ namespace effiPeople.Api.Client.Model
         /// Dirección del punto de suministro
         /// </summary>
         public Address Address { get; set; }
-
-        /// <summary>
-        /// Contadores asociados al punto de suministro.
-        /// </summary>
-        public List<Meter> Meters { get; set; }
+      
     }
 
     

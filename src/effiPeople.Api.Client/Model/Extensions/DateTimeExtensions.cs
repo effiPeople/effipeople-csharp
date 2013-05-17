@@ -7,7 +7,7 @@ namespace effiPeople.Api.Client.Model.Extensions
     /// </summary>
     public static class DateTimeExtensions
     {
-        public static DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        public static DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0);
 
         /// <summary>
         /// Convierte una fecha a segundos desde el 1 de enero de 1970
@@ -39,7 +39,7 @@ namespace effiPeople.Api.Client.Model.Extensions
         public static DateTime ToDateTimeFromEpochInSeconds(this long epochTimeInSeconds)
         {
             if (epochTimeInSeconds == 0)
-                return new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+                return new DateTime(1970, 1, 1, 0, 0, 0);
 
             return Epoch.AddSeconds(epochTimeInSeconds);
         }

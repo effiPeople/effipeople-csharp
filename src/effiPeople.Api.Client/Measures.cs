@@ -122,7 +122,7 @@ namespace effiPeople.Api.Client
                 query.Add(string.Format("meterId={0}", meterId));
 
             if (date != null && date > 0)
-                query.Add(string.Format("date={0}", date));
+                query.Add(string.Format("startdate={0}", date));
 
             if (period != null && period > 0)
                 query.Add(string.Format("period={0}", period));

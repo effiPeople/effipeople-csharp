@@ -72,16 +72,5 @@ namespace effiPeople.Api.Client
             return DeleteAsync(url);
         }
 
-        /// <summary>
-        /// Añade o actualiza varios puntos de suministro
-        /// </summary>
-        /// <param name="usagePoints"></param>
-        /// <returns></returns>
-        public Task<HttpResponseMessage> AddUsagePointsAsync(List<UsagePoint> usagePoints)
-        {
-            string url = GetUrl("/usagepoints");
-
-            return PutAsync(url, usagePoints);
-        }
     }
 }

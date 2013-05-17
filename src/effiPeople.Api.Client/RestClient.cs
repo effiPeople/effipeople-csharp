@@ -191,9 +191,12 @@ namespace EffiPeople.Api.Client
             {
                 var response = await client.PostAsJsonAsync(url, t);
 
-                await HandleResponse(response);
+                HttpResponseMessage r = await HandleResponse(response);
 
-                return await response.Content.ReadAsAsync<TResult>();
+                if (r.IsSuccessStatusCode)
+                    return await response.Content.ReadAsAsync<TResult>();
+
+                throw new RestClientException(r.StatusCode, r.ReasonPhrase);
             }
         }
 

@@ -10,7 +10,7 @@ namespace effiPeople.Api.Client
         /// <summary>
         /// Obtiene un cliente
         /// </summary>
-        /// <param name="customerId"></param>
+        /// <param name="customerId">Identificador del cliente</param>
         /// <returns></returns>
         public Task<Customer> GetCustomerAsync(string customerId)
         {
@@ -44,22 +44,11 @@ namespace effiPeople.Api.Client
             return PostAsync<Customer, Customer>(url, customer);
         }
 
-        /// <summary>
-        /// Añade varios clientes
-        /// </summary>
-        /// <param name="customers"></param>
-        /// <returns></returns>
-        public Task<HttpResponseMessage> AddCustomersAsync(IEnumerable<Customer> customers)
-        {
-            string url = GetUrl("/customers");
-
-            return PutAsync(url, customers);
-        }
 
         /// <summary>
         /// Actualiza un cliente
         /// </summary>
-        /// <param name="customerId"></param>
+        /// <param name="customerId">Identificador del cliente</param>
         /// <param name="customer"></param>
         /// <returns></returns>
         public Task<Customer> UpdateCustomerAsync(string customerId, Customer customer)
@@ -72,7 +61,7 @@ namespace effiPeople.Api.Client
         /// <summary>
         /// Elimina un cliente
         /// </summary>
-        /// <param name="customerId"></param>
+        /// <param name="customerId">Identificador del cliente</param>
         /// <returns></returns>
         public Task<HttpResponseMessage> DeleteCustomerAsync(string customerId)
         {

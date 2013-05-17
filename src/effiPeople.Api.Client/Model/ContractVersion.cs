@@ -7,7 +7,7 @@ namespace effiPeople.Api.Client.Model
     /// <summary>
     ///     Historial de cambios de un contrato
     /// </summary>
-    public class ContractChange
+    public class ContractVersion
     {
         /// <summary>
         ///     Identificador del contrato
@@ -55,7 +55,5 @@ namespace effiPeople.Api.Client.Model
         /// </summary>
         public string Version { get; set; }
     }
-
-    
 
 }
