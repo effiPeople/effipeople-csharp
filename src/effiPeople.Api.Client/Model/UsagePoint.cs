@@ -33,7 +33,6 @@ namespace effiPeople.Api.Client.Model
         /// Dirección del punto de suministro
         /// </summary>
         public Address Address { get; set; }
-      
     }
 
     

@@ -48,6 +48,12 @@ namespace effiPeople.Api.Client.Model
         public string Email { get; set; }
 
         /// <summary>
+        /// Código ISO 639-1 del idioma por defecto en el que se le enviarán los informes al cliente
+        /// </summary>
+        /// <example>ca</example>
+        public string DefaultLanguage { get; set; }
+
+        /// <summary>
         /// Dirección principal del cliente
         /// </summary>
         public Address Address { get; set; }

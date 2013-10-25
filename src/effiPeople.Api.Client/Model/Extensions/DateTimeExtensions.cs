@@ -36,12 +36,17 @@ namespace effiPeople.Api.Client.Model.Extensions
         /// </summary>
         /// <param name="epochTimeInSeconds">Fecha</param>
         /// <returns></returns>
-        public static DateTime ToDateTimeFromEpochInSeconds(this long epochTimeInSeconds)
+        public static DateTime ToDateTimeFromEpochInSeconds(this long epochTimeInSeconds, DateTimeKind dateTimeKind = DateTimeKind.Unspecified)
         {
             if (epochTimeInSeconds == 0)
                 return new DateTime(1970, 1, 1, 0, 0, 0);
 
-            return Epoch.AddSeconds(epochTimeInSeconds);
+            var date = Epoch.AddSeconds(epochTimeInSeconds);
+
+            if (dateTimeKind == DateTimeKind.Utc)
+                return new DateTime(date.Ticks, dateTimeKind);
+
+            return new DateTime(date.ToLocalTime().Ticks, dateTimeKind);
         }
 
         /// <summary>

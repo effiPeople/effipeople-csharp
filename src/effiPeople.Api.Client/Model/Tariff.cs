@@ -1,7 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using effiPeople.Api.Client.Model.Common;
 using effiPeople.Api.Client.Model.Extensions;
 
 namespace effiPeople.Api.Client.Model

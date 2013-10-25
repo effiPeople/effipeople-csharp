@@ -79,5 +79,9 @@ namespace effiPeople.Api.Client.Model
         /// </summary>
         public CustomerType? CustomerType { get; set; }
 
+        /// <summary>
+        ///     Dirección
+        /// </summary>
+        public Address Address { get; set; }
     }
 }

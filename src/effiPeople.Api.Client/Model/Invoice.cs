@@ -134,7 +134,6 @@ namespace effiPeople.Api.Client.Model
         /// <summary>
         ///     Día final del periodo facturado y no incluído.
         /// </summary>
-        /// <
         public long PeriodEnd { get; set; }
 
         /// <summary>
@@ -161,5 +160,10 @@ namespace effiPeople.Api.Client.Model
         ///     Importe total de la factura incluídos impuestos
         /// </summary>
         public double Total { get; set; }
+
+        /// <summary>
+        ///     Equivalente de la tarifa de acceso.  Uno de estos valores: 2.0A, 2.0DHA, 2.0DHS, 2.1A, 2.1DHA, 2.1DHS, 3.0A
+        /// </summary>
+        public string TariffType { get; set; }
     }
 }
